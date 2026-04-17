@@ -5,11 +5,11 @@
 
 ### Datos del Alumno
 
-| Campo | Respuesta |
-| :--- | :--- |
-| **Nombre** | |
-| **Apellido** | |
-| **Legajo** | |
+| Campo | Respuesta       |
+| :--- |:----------------|
+| **Nombre** | Valentino       |
+| **Apellido** | Perassi Ferrara |
+| **Legajo** | 63252           |
 
 > **Fecha de entrega:** 28 de Abril de 2026
 
