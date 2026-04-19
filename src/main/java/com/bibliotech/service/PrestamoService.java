@@ -1,15 +1,16 @@
 package com.bibliotech.service;
 
-import com.bibliotech.model.Libro;
+import com.bibliotech.model.Recurso;
+import com.bibliotech.model.Socio;
 import com.bibliotech.repository.Repository;
 
 public class PrestamoService {
-    private final Repository<Libro, String> libroRepo;
+    private final Repository<Recurso, String> recursoRepo;
     private final Repository<Socio, Integer> socioRepo;
 
     // Inyección por constructor
-    public PrestamoService(Repository<Libro, String> libroRepo, Repository<Socio, Integer> socioRepo) {
-        this.libroRepo = libroRepo;
+    public PrestamoService(Repository<Recurso, String> recursoRepo, Repository<Socio, Integer> socioRepo) {
+        this.recursoRepo = recursoRepo;
         this.socioRepo = socioRepo;
     }
 
