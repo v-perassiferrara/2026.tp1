@@ -1,5 +1,6 @@
 package com.bibliotech.service;
 
+import com.bibliotech.exception.BibliotecaException;
 import com.bibliotech.model.Recurso;
 import com.bibliotech.model.Socio;
 import com.bibliotech.repository.Repository;
