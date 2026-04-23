@@ -1,6 +1,6 @@
 package com.bibliotech.model;
 
-public record Ebook(String isbn, String titulo, String autor, String formato, int anio, int categoria, int tamanoMB) implements Recurso {
+public record Ebook(String isbn, String titulo, String autor, String formato, int anio, String categoria, int tamanoMB) implements Recurso {
 
     // Para validaciones de formato, no de negocio
     public Ebook {

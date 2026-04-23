@@ -6,7 +6,7 @@ public record Docente(int socioId, String nombre, int dni, String email) impleme
 
     // Para validaciones de formato, no de negocio
     public Docente {
-        if (socioId <= 0) throw new IllegalArgumentException("SocioID debe ser positivo");
+        if (socioId < 0) throw new IllegalArgumentException("SocioID no puede ser negativo");
         if (nombre == null || nombre.isBlank()) throw new IllegalArgumentException("Nombre es obligatorio");
         if (dni <= 0) throw new IllegalArgumentException("DNI debe ser positivo");
         if (email == null || email.isBlank()) throw new IllegalArgumentException("Email es obligatorio");
