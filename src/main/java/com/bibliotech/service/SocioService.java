@@ -1,5 +1,6 @@
 package com.bibliotech.service;
 
+import com.bibliotech.exception.BibliotecaException;
 import com.bibliotech.model.Socio;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.Optional;
 
 public interface SocioService {
 
-    void registrarSocio(Socio socio);
+    void registrarSocio(Socio socio) throws BibliotecaException;
     List<Socio> buscarPorNombre(String nombre);
     List<Socio> buscarPorEmail(String email);
 

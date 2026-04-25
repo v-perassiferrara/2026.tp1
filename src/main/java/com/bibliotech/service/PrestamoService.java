@@ -1,21 +1,15 @@
 package com.bibliotech.service;
 
 import com.bibliotech.exception.BibliotecaException;
-import com.bibliotech.model.Recurso;
-import com.bibliotech.model.Socio;
-import com.bibliotech.repository.Repository;
+import com.bibliotech.model.Prestamo;
 
-public class PrestamoService {
-    private final Repository<Recurso, String> recursoRepo;
-    private final Repository<Socio, Integer> socioRepo;
+import java.util.List;
 
-    // Inyección por constructor
-    public PrestamoService(Repository<Recurso, String> recursoRepo, Repository<Socio, Integer> socioRepo) {
-        this.recursoRepo = recursoRepo;
-        this.socioRepo = socioRepo;
-    }
+public interface PrestamoService {
 
-    public void realizarPrestamo(String isbn, int socioId) throws BibliotecaException {
-        // Implementar validaciones y lógica
-    }
+    void realizarPrestamo(String isbn, int socioId) throws BibliotecaException;
+
+    long registrarDevolucion(int prestamoId) throws BibliotecaException;
+
+    List<Prestamo> verHistorial();
 }
