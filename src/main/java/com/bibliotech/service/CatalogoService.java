@@ -1,5 +1,6 @@
 package com.bibliotech.service;
 
+import com.bibliotech.exception.BibliotecaException;
 import com.bibliotech.model.Recurso;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.Optional;
 
 public interface CatalogoService {
 
-    void guardarRecurso(Recurso recurso);
+    void guardarRecurso(Recurso recurso) throws BibliotecaException;
     List<Recurso> buscarPorTitulo(String titulo);
     List<Recurso> buscarPorAutor(String autor);
     List<Recurso> buscarPorCategoria(String categoria);
