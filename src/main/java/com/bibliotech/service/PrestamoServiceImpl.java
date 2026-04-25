@@ -132,34 +132,36 @@ public class PrestamoServiceImpl implements PrestamoService {
 
         Prestamo prestamo = this.prestamoRepo.buscarPorId(prestamoId).orElseThrow(PrestamoNoEncontradoException::new);
 
-        LocalDate fechaHoy = LocalDate.now();
-
-        prestamoRepo.guardar(
-                new Prestamo(
-                        prestamo.prestamoId(),
-                        prestamo.isbn(),
-                        prestamo.socioId(),
-                        prestamo.fechaInicio(),
-                        prestamo.fechaVencimiento(),
-                        fechaHoy,
-                        EstadoPrestamo.DEVUELTO));
-
-
-        if (fechaHoy.isAfter(prestamo.fechaVencimiento())) {
-
-            // Chronounit para calcular dias de diferencia
-            return ChronoUnit.DAYS.between(prestamo.fechaVencimiento(),fechaHoy);
-            // Retornamos el número de días de retraso en la devolución
+        if (prestamo.estado() == EstadoPrestamo.DEVUELTO) {
+            throw new PrestamoException("El préstamo indicado ya ha sido devuelto.");
         }
+            LocalDate fechaHoy = LocalDate.now();
 
-        return 0; // No tiene días de retraso en la devolución
+            prestamoRepo.guardar(
+                    new Prestamo(
+                            prestamo.prestamoId(),
+                            prestamo.isbn(),
+                            prestamo.socioId(),
+                            prestamo.fechaInicio(),
+                            prestamo.fechaVencimiento(),
+                            fechaHoy,
+                            EstadoPrestamo.DEVUELTO));
 
-    }
+
+            if (fechaHoy.isAfter(prestamo.fechaVencimiento())) {
+                // Chronounit para calcular días de diferencia
+                return ChronoUnit.DAYS.between(prestamo.fechaVencimiento(), fechaHoy);
+                // Retornamos el número de días de retraso en la devolución
+            }
+
+            return 0; // No tiene días de retraso en la devolución
+
+        }
 
     @Override
     public List<Prestamo> verHistorial() {
         actualizarEstados();
 
-        return prestamoRepo.buscarTodos();
+        return List.copyOf(prestamoRepo.buscarTodos()); // Mejorado. Copia inmutable de la lista
     }
 }
